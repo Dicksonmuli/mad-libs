@@ -20,6 +20,13 @@ public class App {
 	 get("/story", //matching the action on form
 	 (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();//defining instance of HashMap
+			//retrieving form data
+			model.put("person1", request.queryParams("person1"));
+	 model.put("person2", request.queryParams("person2"));
+	 model.put("animal", request.queryParams("animal"));
+	 model.put("exclamation", request.queryParams("exclamation"));
+	 model.put("verb", request.queryParams("verb"));
+	 model.put("noun", request.queryParams("noun"));
       model.put("template","templates/story.vtl"); //file path
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
