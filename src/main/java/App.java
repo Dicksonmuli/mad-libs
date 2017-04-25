@@ -13,6 +13,14 @@ public class App {
 	 get("/", //index page
 	 (request, response) -> {
 		 Map<String, Object> model = new HashMap<String, Object>();
+    //  adding session
+    model.put("person1", request.queryParams("person1"));
+ model.put("person2", request.session().attribute("person2"));
+ model.put("animal", request.session().attribute("animal"));
+ model.put("exclamation", request.session().attribute("exclamation"));
+ model.put("verb", request.session().attribute("verb"));
+ model.put("noun", request.session().attribute("noun"));
+
 		 model.put("template", "templates/form.vtl");//file path
 		 return new ModelAndView(model, layout);
 	 }, new VelocityTemplateEngine());
@@ -30,5 +38,7 @@ public class App {
       model.put("template","templates/story.vtl"); //file path
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    
   }
 }
