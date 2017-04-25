@@ -39,6 +39,13 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    
+    post("/welcome", //route welcome
+    (request, response) -> {
+    Map<String, Object> model = new HashMap<String, Object>();
+    String inputtedUsername = request.queryParams("username");
+    request.session().attribute("username", inputtedUsername);
+    model.put("username", inputtedUsername);
+    model.put("template", "templates/welcome.vtl");
+    return new ModelAndView(model, layout); }, new VelocityTemplateEngine());
   }
 }
